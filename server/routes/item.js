@@ -12,11 +12,12 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET /items/id
+// GET /items/:id
 router.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
     const item = await Item.findByPk(id);
+    if (!item) return res.sendStatus(404);
     res.json(item);
   } catch (error) {
     next(error);
@@ -33,15 +34,29 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// PUT /items/id
+// PUT /items/:id
 
 router.put("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const oldItem = await Item.findByPk(id);
+    if (!oldItem) return res.sendStatus(404);
     await oldItem.update(req.body);
     const newItem = await Item.findByPk(id);
     res.json(newItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// DELETE /items/:id
+
+router.delete("/:id", async (req, res) => {
+  try {
+    let item = await Item.findByPk(req.params.id);
+    if (!item) return res.sendStatus(404);
+    item = await item.destroy();
+    res.send(item);
   } catch (error) {
     next(error);
   }
