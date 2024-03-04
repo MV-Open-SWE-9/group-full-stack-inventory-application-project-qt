@@ -33,4 +33,18 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+// PUT /items/id
+
+router.put("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const oldItem = await Item.findByPk(id);
+    await oldItem.update(req.body);
+    const newItem = await Item.findByPk(id);
+    res.json(newItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
