@@ -1,4 +1,5 @@
-const { Sequelize, db } = require("../db");
+const { db } = require("../db");
+const { Sequelize } = require("sequelize");
 
 const Item = db.define("item", {
   name: Sequelize.STRING,
@@ -7,4 +8,5 @@ const Item = db.define("item", {
   category: Sequelize.STRING,
   image: Sequelize.STRING,
 });
+
 module.exports = Item;
