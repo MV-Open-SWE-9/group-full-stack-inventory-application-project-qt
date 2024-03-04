@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("./app");
 const Item = require("./models/Item");
 const seed = require("./seed");
+const { items } = require("./seedData");
 
 describe("Item Tests", () => {
   beforeAll(async () => {
@@ -20,6 +21,8 @@ describe("Item Tests", () => {
         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
       })
     );
+    const items = await Item.findAll();
+    expect(response.body.length).toBe(items.length);
   });
 
   test("get one item returns correct response", async () => {
@@ -32,6 +35,26 @@ describe("Item Tests", () => {
         description:
           "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
         category: "men's clothing",
+        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      })
+    );
+  });
+
+  test("post items returns correct response", async () => {
+    const response = await request(app).post("/api/items").send({
+      name: "Quiktrip Big Q",
+      price: 109.95,
+      description: "Delicious",
+      category: "drink",
+      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    });
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        name: "Quiktrip Big Q",
+        price: 109.95,
+        description: "Delicious",
+        category: "drink",
         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
       })
     );
