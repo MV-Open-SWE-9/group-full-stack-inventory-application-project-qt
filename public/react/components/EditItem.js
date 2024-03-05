@@ -2,30 +2,32 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
-const AddItem = ({ setCreating }) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-  const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
+const EditItem = ({ setEditing, item, setItem }) => {
+  const [name, setName] = useState(`${item.name}`);
+  const [description, setDescription] = useState(`${item.description}`);
+  const [price, setPrice] = useState(item.price);
+  const [category, setCategory] = useState(`${item.category}`);
+  const [image, setImage] = useState(`${item.image}`);
 
   async function createItem(e) {
     e.preventDefault();
+    const newItem = {
+      name: name,
+      description: description,
+      price: price,
+      category: category,
+      image: image,
+    };
     try {
-      await fetch(`${apiURL}/items`, {
-        method: "POST",
+      await fetch(`${apiURL}/items/${item.id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: name,
-          description: description,
-          price: price,
-          category: category,
-          image: image,
-        }),
+        body: JSON.stringify(newItem),
       });
-      setCreating(false);
+      setItem(newItem);
+      setEditing(false);
     } catch (e) {
       console.error(e);
     }
@@ -84,11 +86,11 @@ const AddItem = ({ setCreating }) => {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-          <Button onClick={() => setCreating(false)}>Back</Button>
+          <Button onClick={() => setEditing(false)}>Back</Button>
         </Form>
       </Container>
     </>
   );
 };
 
-export default AddItem;
+export default EditItem;

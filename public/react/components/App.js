@@ -7,6 +7,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import apiURL from "../api";
 import ItemDetail from "./ItemDetail";
 import AddItem from "./AddItem";
+import EditItem from "./EditItem";
 
 export const App = () => {
   // const [sauces, setSauces] = useState([]);
@@ -38,6 +39,7 @@ export const App = () => {
   const [item, setItem] = useState([]);
   const [detail, setDetail] = useState(false);
   const [creating, setCreating] = useState(false);
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     fetchItems();
@@ -55,9 +57,15 @@ export const App = () => {
 
   return (
     <>
-      {detail ? (
+      {editing ? (
+        <EditItem setEditing={setEditing} item={item} setItem={setItem} />
+      ) : detail ? (
         <Container>
-          <ItemDetail item={item} setDetail={setDetail} />
+          <ItemDetail
+            item={item}
+            setDetail={setDetail}
+            setEditing={setEditing}
+          />
         </Container>
       ) : creating ? (
         <AddItem setCreating={setCreating} />
