@@ -41,7 +41,7 @@ export const App = () => {
 
   useEffect(() => {
     fetchItems();
-  }, []);
+  }, [creating]);
 
   const fetchItems = async () => {
     try {
@@ -56,7 +56,9 @@ export const App = () => {
   return (
     <>
       {detail ? (
-        <ItemDetail item={item} setDetail={setDetail} />
+        <Container>
+          <ItemDetail item={item} setDetail={setDetail} />
+        </Container>
       ) : creating ? (
         <AddItem setCreating={setCreating} />
       ) : (
