@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { SaucesList } from "./SaucesList";
 import Item from "./Item";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 // import and prepend the api url to any fetch calls
 import apiURL from "../api";
 import ItemDetail from "./ItemDetail";
+import AddItem from "./AddItem";
 
 export const App = () => {
   // const [sauces, setSauces] = useState([]);
@@ -36,7 +37,7 @@ export const App = () => {
   const [items, setItems] = useState([]);
   const [item, setItem] = useState([]);
   const [detail, setDetail] = useState(false);
-
+  const [creating, setCreating] = useState(false);
 
   useEffect(() => {
     fetchItems();
@@ -53,24 +54,25 @@ export const App = () => {
   };
 
   return (
-    <Container className="d-flex">
-      {detail ?
-      
+    <>
+      {detail ? (
         <ItemDetail item={item} setDetail={setDetail} />
-      :
-        <Row>
-        
-          
-            {items.map((item) => (
-              <Col>
-                <Item item={item} setDetail={setDetail} setItem={setItem} />
-              </Col>
-              
-            ))}
-          
-        
-        </Row>
-      }
-    </Container>
+      ) : creating ? (
+        <AddItem setCreating={setCreating} />
+      ) : (
+        <>
+          <Container className="d-flex">
+            <Row>
+              {items.map((item) => (
+                <Col>
+                  <Item item={item} setDetail={setDetail} setItem={setItem} />
+                </Col>
+              ))}
+            </Row>
+          </Container>
+          <Button onClick={() => setCreating(true)}>Add New Item</Button>
+        </>
+      )}
+    </>
   );
 };
