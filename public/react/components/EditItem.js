@@ -12,12 +12,14 @@ const EditItem = ({ setEditing, item, setItem }) => {
   async function createItem(e) {
     e.preventDefault();
     const newItem = {
+      id: item.id,
       name: name,
       description: description,
       price: price,
       category: category,
       image: image,
     };
+    console.log(item);
     try {
       await fetch(`${apiURL}/items/${item.id}`, {
         method: "PUT",
