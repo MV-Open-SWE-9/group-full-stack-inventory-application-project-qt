@@ -19,14 +19,14 @@ const ItemDetail = ({ item, setDetail, setEditing }) => {
 
   return (
     <>
-      <Row className="mt-3">
+      <Row className="mt-3" >
         <Col>
           <Image
             style={{ maxHeight: "602px", minWidth: "602px" }}
             src={item.image}
           />
         </Col>
-        <Col>
+        <Col style={{minHeight: '100vh'}} className="text-light" data-bs-theme="dark">
           <h2>{item.name}</h2>
           <p>{item.description}</p>
           <Card body>{item.category}</Card>

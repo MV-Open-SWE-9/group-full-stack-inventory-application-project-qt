@@ -60,7 +60,7 @@ export const App = () => {
       {editing ? (
         <EditItem setEditing={setEditing} item={item} setItem={setItem} />
       ) : detail ? (
-        <Container>
+        <Container style={{minHeight: '100vh'}}>
           <ItemDetail
             item={item}
             setDetail={setDetail}
@@ -71,7 +71,7 @@ export const App = () => {
         <AddItem setCreating={setCreating} />
       ) : (
         <>
-          <Container className="d-flex">
+          <Container style={{minHeight: '100vh'}} className="d-flex">
             <Row>
               {items.map((item, i) => (
                 <Col key={i}>

@@ -1,4 +1,9 @@
-* {
+#root {
   margin: 0;
   box-sizing: border-box;
+  background-color: #222222;
+}
+
+.drk-card {
+  background-color: #636363;
 }
