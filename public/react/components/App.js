@@ -43,7 +43,7 @@ export const App = () => {
 
   useEffect(() => {
     fetchItems();
-  }, [creating]);
+  }, [creating, detail]);
 
   const fetchItems = async () => {
     try {

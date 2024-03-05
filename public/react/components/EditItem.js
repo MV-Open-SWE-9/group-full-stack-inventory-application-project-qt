@@ -19,7 +19,6 @@ const EditItem = ({ setEditing, item, setItem }) => {
       category: category,
       image: image,
     };
-    console.log(item);
     try {
       await fetch(`${apiURL}/items/${item.id}`, {
         method: "PUT",
