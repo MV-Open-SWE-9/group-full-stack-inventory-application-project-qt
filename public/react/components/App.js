@@ -53,15 +53,22 @@ export const App = () => {
   };
 
   return (
-    <Container>
+    <Container className="d-flex">
       {detail ?
       
         <ItemDetail item={item} setDetail={setDetail} />
       :
         <Row>
-          {items.map((item) => (
-            <Item item={item} setDetail={setDetail} setItem={setItem} />
-          ))}
+        
+          
+            {items.map((item) => (
+              <Col>
+                <Item item={item} setDetail={setDetail} setItem={setItem} />
+              </Col>
+              
+            ))}
+          
+        
         </Row>
       }
     </Container>

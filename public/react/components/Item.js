@@ -4,7 +4,7 @@ import { Card, Button, CardText } from "react-bootstrap";
 const Item = ({ item, setDetail, setItem }) => {
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={item.image} />
+      <Card.Img style={{height: '20em'}} variant="top" src={item.image} fluid />
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>
         <CardText>${item.price.toFixed(2)}</CardText>
