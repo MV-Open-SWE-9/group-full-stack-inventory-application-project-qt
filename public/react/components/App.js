@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 // import and prepend the api url to any fetch calls
 import apiURL from "../api";
+import ItemDetail from "./ItemDetail";
 
 export const App = () => {
   // const [sauces, setSauces] = useState([]);
@@ -33,6 +34,9 @@ export const App = () => {
   // )
 
   const [items, setItems] = useState([]);
+  const [item, setItem] = useState([]);
+  const [detail, setDetail] = useState(false);
+
 
   useEffect(() => {
     fetchItems();
@@ -50,11 +54,16 @@ export const App = () => {
 
   return (
     <Container>
-      <Row>
-        {items.map((item) => (
-          <Item item={item} />
-        ))}
-      </Row>
+      {detail ?
+      
+        <ItemDetail item={item} setDetail={setDetail} />
+      :
+        <Row>
+          {items.map((item) => (
+            <Item item={item} setDetail={setDetail} setItem={setItem} />
+          ))}
+        </Row>
+      }
     </Container>
   );
 };
