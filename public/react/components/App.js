@@ -43,7 +43,7 @@ export const App = () => {
 
   useEffect(() => {
     fetchItems();
-  }, [creating]);
+  }, [creating, detail]);
 
   const fetchItems = async () => {
     try {
@@ -73,9 +73,9 @@ export const App = () => {
         <>
           <Container className="d-flex">
             <Row>
-              {items.map((item) => (
-                <Col>
-                  <Item item={item} setDetail={setDetail} setItem={setItem} />
+              {items.map((item, i) => (
+                <Col key={i}>
+                  <Item key={i} item={item} setDetail={setDetail} setItem={setItem} />
                 </Col>
               ))}
             </Row>

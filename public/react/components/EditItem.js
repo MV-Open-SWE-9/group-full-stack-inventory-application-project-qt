@@ -12,6 +12,7 @@ const EditItem = ({ setEditing, item, setItem }) => {
   async function createItem(e) {
     e.preventDefault();
     const newItem = {
+      id: item.id,
       name: name,
       description: description,
       price: price,
