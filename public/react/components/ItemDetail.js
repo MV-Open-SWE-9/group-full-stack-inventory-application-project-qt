@@ -6,9 +6,11 @@ const ItemDetail = ({ item, setDetail }) => {
     <>
       <Row className="mt-3">
         <Col>
-          <>
-            <Image src={item.image} />
-          </>
+          <Image
+            style={{ maxHeight: "602px", minWidth: "602px" }}
+            src={item.image}
+            thumbnail
+          />
         </Col>
         <Col>
           <h2>{item.name}</h2>
