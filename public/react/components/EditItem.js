@@ -72,12 +72,17 @@ const EditItem = ({ setEditing, item, setItem }) => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
-            <Form.Control
+            <Form.Select
               onChange={(e) => setCategory(e.target.value)}
               value={category}
               type="text"
               placeholder="Enter Category"
-            />
+            >
+              <option>Select Category</option>
+              <option>Clothing</option>
+              <option>Technology</option>
+              <option>Jewelery</option>
+            </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>
