@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
-const EditItem = ({ setEditing, item, setItem }) => {
+const EditItem = ({ setEditing, item, setItem, categories }) => {
   const [name, setName] = useState(`${item.name}`);
   const [description, setDescription] = useState(`${item.description}`);
   const [price, setPrice] = useState(item.price);
@@ -78,10 +78,9 @@ const EditItem = ({ setEditing, item, setItem }) => {
               type="text"
               placeholder="Enter Category"
             >
-              <option>Select Category</option>
-              <option>Clothing</option>
-              <option>Technology</option>
-              <option>Jewelery</option>
+              {categories.map((category) => (
+                <option>{category}</option>
+              ))}
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">

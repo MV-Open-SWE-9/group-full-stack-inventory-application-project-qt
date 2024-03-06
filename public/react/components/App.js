@@ -42,6 +42,13 @@ export const App = () => {
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState(false);
 
+  const categories = [
+    "men's clothing",
+    "jewelery",
+    "electronics",
+    "women's clothing",
+  ];
+
   useEffect(() => {
     fetchItems();
   }, [creating, detail]);
@@ -60,7 +67,12 @@ export const App = () => {
     <>
       <TestNav setCreating={setCreating} />
       {editing ? (
-        <EditItem setEditing={setEditing} item={item} setItem={setItem} />
+        <EditItem
+          setEditing={setEditing}
+          item={item}
+          setItem={setItem}
+          categories={categories}
+        />
       ) : detail ? (
         <Container style={{ minHeight: "100vh" }}>
           <ItemDetail
@@ -70,7 +82,7 @@ export const App = () => {
           />
         </Container>
       ) : creating ? (
-        <AddItem setCreating={setCreating} />
+        <AddItem setCreating={setCreating} categories={categories} />
       ) : (
         <>
           <Container style={{ minHeight: "100vh" }} className="d-flex">

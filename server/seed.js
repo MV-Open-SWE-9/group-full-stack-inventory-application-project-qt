@@ -1,8 +1,7 @@
 const { sauces, items, users } = require("./seedData.js");
 
 const { db } = require("./db");
-const { Item } = require("./models");
-const { User } = require("./models");
+const { Item, User } = require("./models");
 
 const seed = async () => {
   try {

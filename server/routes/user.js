@@ -49,14 +49,14 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-// DELETE /Users/:id
+// DELETE /users/:id
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req, res, next) => {
   try {
-    let User = await User.findByPk(req.params.id);
-    if (!User) return res.sendStatus(404);
-    User = await User.destroy();
-    res.send(User);
+    let oldUser = await User.findByPk(req.params.id);
+    if (!oldUser) return res.sendStatus(404);
+    let user = await oldUser.destroy();
+    res.send(user);
   } catch (error) {
     next(error);
   }
