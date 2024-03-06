@@ -8,6 +8,7 @@ import apiURL from "../api";
 import ItemDetail from "./ItemDetail";
 import AddItem from "./AddItem";
 import EditItem from "./EditItem";
+import TestNav from "./TestNav";
 
 export const App = () => {
   // const [sauces, setSauces] = useState([]);
@@ -57,10 +58,11 @@ export const App = () => {
 
   return (
     <>
+      <TestNav setCreating={setCreating} />
       {editing ? (
         <EditItem setEditing={setEditing} item={item} setItem={setItem} />
       ) : detail ? (
-        <Container style={{minHeight: '100vh'}}>
+        <Container style={{ minHeight: "100vh" }}>
           <ItemDetail
             item={item}
             setDetail={setDetail}
@@ -71,16 +73,20 @@ export const App = () => {
         <AddItem setCreating={setCreating} />
       ) : (
         <>
-          <Container style={{minHeight: '100vh'}} className="d-flex">
+          <Container style={{ minHeight: "100vh" }} className="d-flex">
             <Row>
               {items.map((item, i) => (
                 <Col key={i}>
-                  <Item key={i} item={item} setDetail={setDetail} setItem={setItem} />
+                  <Item
+                    key={i}
+                    item={item}
+                    setDetail={setDetail}
+                    setItem={setItem}
+                  />
                 </Col>
               ))}
             </Row>
           </Container>
-          <Button onClick={() => setCreating(true)}>Add New Item</Button>
         </>
       )}
     </>
