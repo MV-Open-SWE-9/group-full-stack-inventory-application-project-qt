@@ -1,7 +1,6 @@
-const { sauces, items } = require("./seedData.js");
-
+const { sauces, items, users } = require("./seedData.js");
 const { db } = require("./db");
-const { Item } = require("./models");
+const { Item, User } = require("./models");
 
 const seed = async () => {
   try {
@@ -10,8 +9,9 @@ const seed = async () => {
 
     // insert data
     await Promise.all(items.map((item) => Item.create(item)));
+    await Promise.all(users.map((user) => User.create(user)));
 
-    //console.log("db populated!");
+    console.log("db populated!");
   } catch (error) {
     console.error(error);
   }

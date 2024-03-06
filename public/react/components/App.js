@@ -8,6 +8,7 @@ import apiURL from "../api";
 import ItemDetail from "./ItemDetail";
 import AddItem from "./AddItem";
 import EditItem from "./EditItem";
+import TestNav from "./TestNav";
 
 export const App = () => {
   // const [sauces, setSauces] = useState([]);
@@ -41,6 +42,12 @@ export const App = () => {
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState(false);
 
+  const categories = [
+    "men's clothing",
+    "jewelery",
+    "electronics",
+    "women's clothing",
+  ];
   useEffect(() => {
     fetchItems();
   }, [creating, detail]);
@@ -57,10 +64,16 @@ export const App = () => {
 
   return (
     <>
+      <TestNav setCreating={setCreating} />
       {editing ? (
-        <EditItem setEditing={setEditing} item={item} setItem={setItem} />
+        <EditItem
+          setEditing={setEditing}
+          item={item}
+          setItem={setItem}
+          categories={categories}
+        />
       ) : detail ? (
-        <Container>
+        <Container style={{ minHeight: "100vh" }}>
           <ItemDetail
             item={item}
             setDetail={setDetail}
@@ -68,19 +81,30 @@ export const App = () => {
           />
         </Container>
       ) : creating ? (
-        <AddItem setCreating={setCreating} />
+        <AddItem setCreating={setCreating} categories={categories} />
       ) : (
         <>
-          <Container className="d-flex">
+          <Container style={{ minHeight: "100vh" }} className="d-flex">
             <Row>
               {items.map((item, i) => (
-                <Col key={i}>
-                  <Item key={i} item={item} setDetail={setDetail} setItem={setItem} />
+                <Col  key={i}>
+                  <Item
+                    key={i}
+                    item={item}
+                    setDetail={setDetail}
+                    setItem={setItem}
+                  />
                 </Col>
               ))}
             </Row>
+            <Button
+              className="fixed-bottom m-3"
+              style={{ maxWidth: "10em" }}
+              onClick={() => setCreating(true)}
+            >
+              Add New Item
+            </Button>
           </Container>
-          <Button onClick={() => setCreating(true)}>Add New Item</Button>
         </>
       )}
     </>

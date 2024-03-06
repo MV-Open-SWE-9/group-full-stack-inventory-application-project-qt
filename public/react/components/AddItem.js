@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
-const AddItem = ({ setCreating }) => {
+const AddItem = ({ setCreating, categories }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -33,7 +33,11 @@ const AddItem = ({ setCreating }) => {
 
   return (
     <>
-      <Container>
+      <Container
+        className="text-light"
+        data-bs-theme="dark"
+        style={{ minHeight: "100vh" }}
+      >
         <Form className="mt-5" onSubmit={(e) => createItem(e)}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
@@ -65,12 +69,24 @@ const AddItem = ({ setCreating }) => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
-            <Form.Control
+
+            <Form.Select
+
               onChange={(e) => setCategory(e.target.value)}
               value={category}
               type="text"
               placeholder="Enter Category"
-            />
+              required
+            >
+              <option hidden="true">Choose Category</option>
+              <option disabled="disabled" default="true">
+                Choose Tagging
+              </option>
+              {categories.map((category) => (
+                <option>{category}</option>
+              ))}
+            </Form.Select>
+
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>

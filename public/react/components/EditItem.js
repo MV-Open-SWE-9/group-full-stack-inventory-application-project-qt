@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
-const EditItem = ({ setEditing, item, setItem }) => {
+const EditItem = ({ setEditing, item, setItem, categories }) => {
   const [name, setName] = useState(`${item.name}`);
   const [description, setDescription] = useState(`${item.description}`);
   const [price, setPrice] = useState(item.price);
@@ -36,8 +36,12 @@ const EditItem = ({ setEditing, item, setItem }) => {
 
   return (
     <>
-      <Container>
-        <Form className="mt-5" onSubmit={(e) => createItem(e)}>
+      <Container
+        style={{ minHeight: "100vh" }}
+        data-bs-theme="dark"
+        className="text-light"
+      >
+        <Form className="mt-3" onSubmit={(e) => createItem(e)}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
             <Form.Control
@@ -68,12 +72,16 @@ const EditItem = ({ setEditing, item, setItem }) => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
-            <Form.Control
+            <Form.Select
               onChange={(e) => setCategory(e.target.value)}
               value={category}
               type="text"
               placeholder="Enter Category"
-            />
+            >
+              {categories.map((category) => (
+                <option>{category}</option>
+              ))}
+            </Form.Select>in
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>
