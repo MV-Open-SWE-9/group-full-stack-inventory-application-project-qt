@@ -86,6 +86,13 @@ export const App = () => {
                 </Col>
               ))}
             </Row>
+            <Button
+              className="fixed-bottom m-3"
+              style={{ maxWidth: "10em" }}
+              onClick={() => setCreating(true)}
+            >
+              Add New Item
+            </Button>
           </Container>
         </>
       )}

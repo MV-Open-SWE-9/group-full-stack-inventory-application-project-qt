@@ -36,7 +36,11 @@ const EditItem = ({ setEditing, item, setItem }) => {
 
   return (
     <>
-      <Container style={{minHeight: '100vh'}}>
+      <Container
+        style={{ minHeight: "100vh" }}
+        data-bs-theme="dark"
+        className="text-light"
+      >
         <Form className="mt-3" onSubmit={(e) => createItem(e)}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
