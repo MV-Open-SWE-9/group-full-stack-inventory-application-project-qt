@@ -19,6 +19,7 @@ export const App = () => {
   const [login, setLogin] = useState(false);
   const [loggingIn, setLoggingIn] = useState(false);
   const [user, setUser] = useState(null);
+
   const categories = [
     "men's clothing",
     "jewelery",

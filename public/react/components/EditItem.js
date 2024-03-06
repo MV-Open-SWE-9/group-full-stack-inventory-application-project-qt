@@ -49,6 +49,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               value={name}
               type="text"
               placeholder="Enter Item Name"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -59,6 +60,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               as="textarea"
               style={{ height: "100px" }}
               placeholder="Enter Description"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -68,6 +70,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               value={price}
               type="number"
               placeholder="Enter Price"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -77,11 +80,13 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               value={category}
               type="text"
               placeholder="Enter Category"
+              required
             >
               {categories.map((category) => (
                 <option>{category}</option>
               ))}
-            </Form.Select>in
+            </Form.Select>
+            in
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>
@@ -90,6 +95,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               value={image}
               type="text"
               placeholder="Enter Image Url"
+              required
             />
           </Form.Group>
           <Button variant="primary" type="submit">
