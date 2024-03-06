@@ -17,6 +17,7 @@ export const App = () => {
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState(false);
   const [login, setLogin] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
 
   const categories = [
     "men's clothing",
@@ -43,56 +44,58 @@ export const App = () => {
     setLogin(false);
   }
 
-  const loggingIn = () => {
-    setLogin(true);
-    console.log('logged in')
-  }
-
   return (
     <>
-      <TestNav login={login} logOut={logOut} loggingIn={loggingIn} />
-      {editing ? (
-        <EditItem
-          setEditing={setEditing}
-          item={item}
-          setItem={setItem}
-          categories={categories}
-        />
-      ) : detail ? (
-        <Container style={{ minHeight: "100vh" }}>
-          <ItemDetail
-            item={item}
-            setDetail={setDetail}
+
+      <TestNav login={login} logOut={logOut} loggingIn={loggingIn} setLoggingIn={setLoggingIn} />
+      { loggingIn ?
+          <>
+            <h1>log in page</h1>
+          </>
+        :
+        editing ? 
+          <EditItem
             setEditing={setEditing}
+            item={item}
+            setItem={setItem}
+            categories={categories}
           />
-        </Container>
-      ) : creating ? (
-        <AddItem setCreating={setCreating} categories={categories} />
-      ) : (
-        <>
-          <Container style={{ minHeight: "100vh" }} className="d-flex">
-            <Row>
-              {items.map((item, i) => (
-                <Col  key={i}>
-                  <Item
-                    key={i}
-                    item={item}
-                    setDetail={setDetail}
-                    setItem={setItem}
-                  />
-                </Col>
-              ))}
-            </Row>
-            <Button
-              className="fixed-bottom m-3"
-              style={{ maxWidth: "10em" }}
-              onClick={() => setCreating(true)}
-            >
-              Add New Item
-            </Button>
+        : detail ? 
+          <Container style={{ minHeight: "100vh" }}>
+            <ItemDetail
+              item={item}
+              setDetail={setDetail}
+              setEditing={setEditing}
+            />
           </Container>
-        </>
-      )}
+        : creating ?
+          <AddItem setCreating={setCreating} categories={categories} />
+        :
+          <>
+            <Container style={{ minHeight: "100vh" }} className="d-flex">
+              <Row>
+                {items.map((item, i) => (
+                  <Col  key={i}>
+                    <Item
+                      key={i}
+                      item={item}
+                      setDetail={setDetail}
+                      setItem={setItem}
+                    />
+                  </Col>
+                ))}
+              </Row>
+              <Button
+                className="fixed-bottom m-3"
+                style={{ maxWidth: "10em" }}
+                onClick={() => setCreating(true)}
+              >
+                Add New Item
+              </Button>
+            </Container>
+          </>
+      }
+      
     </>
   );
 };
