@@ -86,7 +86,6 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
                 <option>{category}</option>
               ))}
             </Form.Select>
-            in
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>
