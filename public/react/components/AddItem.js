@@ -33,7 +33,11 @@ const AddItem = ({ setCreating }) => {
 
   return (
     <>
-      <Container>
+      <Container
+        className="text-light"
+        data-bs-theme="dark"
+        style={{ minHeight: "100vh" }}
+      >
         <Form className="mt-5" onSubmit={(e) => createItem(e)}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
