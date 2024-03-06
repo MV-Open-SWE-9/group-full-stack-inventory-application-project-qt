@@ -1,5 +1,4 @@
 const { sauces, items, users } = require("./seedData.js");
-
 const { db } = require("./db");
 const { Item, User } = require("./models");
 

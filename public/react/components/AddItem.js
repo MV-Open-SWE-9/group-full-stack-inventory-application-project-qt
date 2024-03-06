@@ -69,7 +69,9 @@ const AddItem = ({ setCreating, categories }) => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
+
             <Form.Select
+
               onChange={(e) => setCategory(e.target.value)}
               value={category}
               type="text"
@@ -84,6 +86,7 @@ const AddItem = ({ setCreating, categories }) => {
                 <option>{category}</option>
               ))}
             </Form.Select>
+
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>

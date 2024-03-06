@@ -48,7 +48,6 @@ export const App = () => {
     "electronics",
     "women's clothing",
   ];
-
   useEffect(() => {
     fetchItems();
   }, [creating, detail]);

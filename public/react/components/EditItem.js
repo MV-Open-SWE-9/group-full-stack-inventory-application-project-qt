@@ -81,7 +81,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               {categories.map((category) => (
                 <option>{category}</option>
               ))}
-            </Form.Select>
+            </Form.Select>in
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>

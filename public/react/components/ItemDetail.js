@@ -4,6 +4,7 @@ import { Card, Button, Row, Col, Image } from "react-bootstrap";
 import apiURL from "../api";
 
 const ItemDetail = ({ item, setDetail, setEditing }) => {
+
   const deleteItem = async (e) => {
     e.preventDefault();
     try {
