@@ -88,7 +88,7 @@ export const App = () => {
           <Container style={{ minHeight: "100vh" }} className="d-flex">
             <Row>
               {items.map((item, i) => (
-                <Col key={i}>
+                <Col  key={i}>
                   <Item
                     key={i}
                     item={item}
