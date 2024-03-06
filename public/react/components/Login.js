@@ -19,13 +19,14 @@ const Login = ({ setLoggingin, setLogin, setUser }) => {
         password: password,
       }),
     });
-    const data = await response.json();
 
     if (response.status === 200) {
+      const data = await response.json();
       setUser(data);
       setLogin(true);
       setLoggingin(false);
     } else {
+      console.log("not auth");
       window.alert("Incorrect Username or Password");
     }
   }
@@ -58,7 +59,8 @@ const Login = ({ setLoggingin, setLogin, setUser }) => {
         <Button variant="primary" type="submit">
           Log In
         </Button>
-        <Button onClick={() => setEditing(false)}>Back</Button>
+
+        <Button onClick={() => setLoggingin(false)}>Back</Button>
       </Form>
     </Container>
   );

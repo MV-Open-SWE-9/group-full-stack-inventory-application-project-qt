@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Navbar, Button } from "react-bootstrap";
+import { Container, Navbar, Button, Badge } from "react-bootstrap";
 
 function TestNav({ logOut, login, setLoggingIn, loggingIn, user }) {
   useEffect(() => console.log(user), []);
@@ -13,15 +13,20 @@ function TestNav({ logOut, login, setLoggingIn, loggingIn, user }) {
             <Navbar.Collapse className="justify-content-end">
               {login ? (
                 <>
-                  <Navbar.Text className="me-3">
-                    Signed in as: {user.username}
+                  <Navbar.Text className="me-3 text-light">
+                    Signed in as:{" "}
+                    <Badge bg="dark" className="fs-6">
+                      {user.username}
+                    </Badge>
                   </Navbar.Text>
                   <Button className="me-3" variant="secondary" onClick={logOut}>
                     Logout
                   </Button>
                 </>
               ) : (
-                <Button onClick={() => setLoggingIn(true)}>login</Button>
+                <Button variant="secondary" onClick={() => setLoggingIn(true)}>
+                  login
+                </Button>
               )}
             </Navbar.Collapse>
           </>
