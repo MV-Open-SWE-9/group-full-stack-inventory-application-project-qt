@@ -7,7 +7,7 @@ const AddItem = ({ setCreating, categories }) => {
   //states of the item model:
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(null);
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
 
