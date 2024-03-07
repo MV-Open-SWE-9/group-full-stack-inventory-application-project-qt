@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { SaucesList } from "./SaucesList";
 import Item from "./Item";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
@@ -9,38 +8,20 @@ import ItemDetail from "./ItemDetail";
 import AddItem from "./AddItem";
 import EditItem from "./EditItem";
 import TestNav from "./TestNav";
+import Login from "./Login";
+import Cart from "./Cart";
+
 
 export const App = () => {
-  // const [sauces, setSauces] = useState([]);
-
-  // async function fetchSauces(){
-  // 	try {
-  // 		const response = await fetch(`${apiURL}/sauces`);
-  // 		const saucesData = await response.json();
-
-  // 		setSauces(saucesData);
-  // 	} catch (err) {
-  // 		console.log("Oh no an error! ", err)
-  // 	}
-  // }
-
-  // useEffect(() => {
-  // 	fetchSauces();
-  // }, []);
-
-  // return (
-  // 	<main>
-  //   <h1>Sauce Store</h1>
-  // 		<h2>All things 🔥</h2>
-  // 		<SaucesList sauces={sauces} />
-  // 	</main>
-  // )
-
   const [items, setItems] = useState([]);
   const [item, setItem] = useState([]);
   const [detail, setDetail] = useState(false);
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [cart, setCart] = useState(false);
 
   const categories = [
     "men's clothing",
@@ -52,6 +33,7 @@ export const App = () => {
     fetchItems();
   }, [creating, detail]);
 
+  //get all items
   const fetchItems = async () => {
     try {
       const res = await fetch(`${apiURL}/items`);
@@ -62,10 +44,43 @@ export const App = () => {
     }
   };
 
+  const logOut = () => {
+    //todo log out user
+    setLogin(false);
+    setUser(null);
+  };
+
   return (
     <>
-      <TestNav setCreating={setCreating} />
-      {editing ? (
+      <TestNav
+        login={login}
+        logOut={logOut}
+        loggingIn={loggingIn}
+        setLoggingIn={setLoggingIn}
+        user={user}
+        setCart={setCart}
+      />
+      {/* ternary to decide which mode of item manipulation we are in  */}
+      {cart ? (
+        <>
+          <Cart
+            user={user}
+            setCart={setCart}
+            detail={detail}
+            item={item}
+            setDetail={setDetail}
+            setItem={setItem}
+          />
+        </>
+      ) : loggingIn ? (
+        <>
+          <Login
+            setLoggingin={setLoggingIn}
+            setLogin={setLogin}
+            setUser={setUser}
+          />
+        </>
+      ) : editing ? (
         <EditItem
           setEditing={setEditing}
           item={item}
@@ -78,6 +93,8 @@ export const App = () => {
             item={item}
             setDetail={setDetail}
             setEditing={setEditing}
+            login={login}
+            user={user}
           />
         </Container>
       ) : creating ? (
@@ -87,7 +104,7 @@ export const App = () => {
           <Container style={{ minHeight: "100vh" }} className="d-flex">
             <Row>
               {items.map((item, i) => (
-                <Col  key={i}>
+                <Col key={i}>
                   <Item
                     key={i}
                     item={item}

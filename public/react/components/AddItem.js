@@ -2,13 +2,26 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
+
+//component to add new items to database
 const AddItem = ({ setCreating, categories }) => {
+  //states of the item model
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
 
+  // const addConfirm = (e) => {
+  //   if (confirm("Everything look okay?") === true) {
+  //     createItem(e);
+  //   } else {
+  //     console.log("Aborted");
+  //   }
+  // };
+
+  //function to fetch database and post items at the end
   async function createItem(e) {
     e.preventDefault();
     try {
@@ -33,6 +46,9 @@ const AddItem = ({ setCreating, categories }) => {
 
   return (
     <>
+
+      {/* form containing all the properties to create a new item */}
+
       <Container
         className="text-light"
         data-bs-theme="dark"
@@ -46,6 +62,7 @@ const AddItem = ({ setCreating, categories }) => {
               value={name}
               type="text"
               placeholder="Enter Item Name"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -56,6 +73,7 @@ const AddItem = ({ setCreating, categories }) => {
               as="textarea"
               style={{ height: "100px" }}
               placeholder="Enter Description"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -65,6 +83,7 @@ const AddItem = ({ setCreating, categories }) => {
               value={price}
               type="number"
               placeholder="Enter Price"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -95,11 +114,13 @@ const AddItem = ({ setCreating, categories }) => {
               value={image}
               type="text"
               placeholder="Enter Image Url"
+              required
             />
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          {/* button that sets page back to home */}
           <Button onClick={() => setCreating(false)}>Back</Button>
         </Form>
       </Container>

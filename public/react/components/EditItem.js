@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
+
+//a component that allows user to make changes to existing item
+
 const EditItem = ({ setEditing, item, setItem, categories }) => {
   const [name, setName] = useState(`${item.name}`);
   const [description, setDescription] = useState(`${item.description}`);
@@ -9,6 +12,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
   const [category, setCategory] = useState(`${item.category}`);
   const [image, setImage] = useState(`${item.image}`);
 
+  //fetch particular item and make changes
   async function createItem(e) {
     e.preventDefault();
     const newItem = {
@@ -49,6 +53,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               value={name}
               type="text"
               placeholder="Enter Item Name"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -59,6 +64,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               as="textarea"
               style={{ height: "100px" }}
               placeholder="Enter Description"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -68,6 +74,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               value={price}
               type="number"
               placeholder="Enter Price"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -77,11 +84,12 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               value={category}
               type="text"
               placeholder="Enter Category"
+              required
             >
               {categories.map((category) => (
                 <option>{category}</option>
               ))}
-            </Form.Select>in
+            </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>
@@ -90,6 +98,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
               value={image}
               type="text"
               placeholder="Enter Image Url"
+              required
             />
           </Form.Group>
           <Button variant="primary" type="submit">
