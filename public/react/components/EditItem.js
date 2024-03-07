@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
-
 //a component that allows user to make changes to existing item
 
 const EditItem = ({ setEditing, item, setItem, categories }) => {
+  // initialize all edit values
   const [name, setName] = useState(`${item.name}`);
   const [description, setDescription] = useState(`${item.description}`);
   const [price, setPrice] = useState(item.price);
@@ -45,6 +45,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
         data-bs-theme="dark"
         className="text-light"
       >
+        {/* form to submit edited items */}
         <Form className="mt-3" onSubmit={(e) => createItem(e)}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>

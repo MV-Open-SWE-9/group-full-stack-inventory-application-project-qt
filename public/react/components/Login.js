@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import apiURL from "../api";
+// get api from apiUrl
 
 const Login = ({ setLoggingin, setLogin, setUser }) => {
+  // initialize useStates
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [creatingAccount, setCreatingAccount] = useState(false);
-
+  //checks if the username and password is correct
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -36,6 +38,7 @@ const Login = ({ setLoggingin, setLogin, setUser }) => {
     }
   };
 
+  //function that takes values stored and creates user
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
@@ -106,7 +109,13 @@ const Login = ({ setLoggingin, setLogin, setUser }) => {
             <Button className="mx-2" onClick={() => setCreatingAccount(true)}>
               Create Account
             </Button>
-            <Button variant="secondary" className="mx-2" onClick={() => setLoggingin(false)}>Back</Button>
+            <Button
+              variant="secondary"
+              className="mx-2"
+              onClick={() => setLoggingin(false)}
+            >
+              Back
+            </Button>
           </Form>
         </Container>
       ) : (
@@ -116,7 +125,7 @@ const Login = ({ setLoggingin, setLogin, setUser }) => {
           className="text-light"
         >
           <legend>Create Account</legend>
-          <Form className="mt-3" onSubmit={(e) => handleCreate(e)}>
+          <Form className="mt-3">
             <Form.Group className="mb-3">
               <Form.Label>Username</Form.Label>
               <Form.Control
@@ -147,10 +156,20 @@ const Login = ({ setLoggingin, setLogin, setUser }) => {
                 required
               />
             </Form.Group>
-            <Button variant="success" className="me-2" type="submit">
+            <Button
+              variant="success"
+              className="me-2"
+              onClick={(e) => handleCreate(e)}
+            >
               Create Account
             </Button>
-            <Button variant="secondary" className="mx-2" onClick={() => setCreatingAccount(false)}>Log In</Button>
+            <Button
+              variant="secondary"
+              className="mx-2"
+              onClick={() => setCreatingAccount(false)}
+            >
+              Log In
+            </Button>
           </Form>
         </Container>
       )}

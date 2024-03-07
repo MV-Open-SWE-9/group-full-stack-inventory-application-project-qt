@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Card, Button, CardText, Container, Row, Col } from "react-bootstrap";
 import apiURL from "../api";
 
-const Cart = ({ user, setCart, setDetail, setItem, item, detail }) => {
+const Cart = ({ user, setCart }) => {
+  //initialize user items with array
   const [userItems, setUserItems] = useState([]);
 
+  //initialize page with items
   useEffect(() => {
     fetchItems();
   }, []);
 
+  //fetch the user items from the cart association
   const fetchItems = async () => {
     try {
       const res = await fetch(`${apiURL}/users/${user.id}/cart`);
@@ -19,6 +22,7 @@ const Cart = ({ user, setCart, setDetail, setItem, item, detail }) => {
     }
   };
 
+  //allow user to remove selected item
   const handleRemove = async (item) => {
     try {
       await fetch(`${apiURL}/users/removeFromCart`, {
@@ -43,6 +47,7 @@ const Cart = ({ user, setCart, setDetail, setItem, item, detail }) => {
       data-bs-theme="dark"
       className="text-light"
     >
+      {/* map all of the items from the user's cart */}
       <Row>
         {userItems.map((item, i) => (
           <Col key={i}>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Item from "./Item";
+// import bootstrap-react components
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 // import and prepend the api url to any fetch calls
 import apiURL from "../api";
+// import react components
 import ItemDetail from "./ItemDetail";
 import AddItem from "./AddItem";
 import EditItem from "./EditItem";
@@ -11,8 +13,8 @@ import TestNav from "./TestNav";
 import Login from "./Login";
 import Cart from "./Cart";
 
-
 export const App = () => {
+  // initialize all useStates
   const [items, setItems] = useState([]);
   const [item, setItem] = useState([]);
   const [detail, setDetail] = useState(false);
@@ -23,17 +25,20 @@ export const App = () => {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState(false);
 
+  // initialize all item categories
   const categories = [
     "men's clothing",
     "jewelery",
     "electronics",
     "women's clothing",
   ];
+
+  // allow page to reload on specific useState changes and initial load
   useEffect(() => {
     fetchItems();
   }, [creating, detail]);
 
-  //get all items
+  // get all items and store in items useState
   const fetchItems = async () => {
     try {
       const res = await fetch(`${apiURL}/items`);
@@ -44,14 +49,16 @@ export const App = () => {
     }
   };
 
+  // log out user
   const logOut = () => {
-    //todo log out user
     setLogin(false);
     setUser(null);
+    setCart(false);
   };
 
   return (
     <>
+      {/* always render navbar using bootstrap-react components */}
       <TestNav
         login={login}
         logOut={logOut}
@@ -60,9 +67,10 @@ export const App = () => {
         user={user}
         setCart={setCart}
       />
-      {/* ternary to decide which mode of item manipulation we are in  */}
+      {/* ternary to decide which mode of component manipulation user is in */}
       {cart ? (
         <>
+          {/* view cart */}
           <Cart
             user={user}
             setCart={setCart}
@@ -74,6 +82,7 @@ export const App = () => {
         </>
       ) : loggingIn ? (
         <>
+          {/* view login */}
           <Login
             setLoggingin={setLoggingIn}
             setLogin={setLogin}
@@ -81,14 +90,18 @@ export const App = () => {
           />
         </>
       ) : editing ? (
-        <EditItem
-          setEditing={setEditing}
-          item={item}
-          setItem={setItem}
-          categories={categories}
-        />
+        <>
+          {/* view item edit */}
+          <EditItem
+            setEditing={setEditing}
+            item={item}
+            setItem={setItem}
+            categories={categories}
+          />
+        </>
       ) : detail ? (
         <Container style={{ minHeight: "100vh" }}>
+          {/* view detailed item */}
           <ItemDetail
             item={item}
             setDetail={setDetail}
@@ -98,10 +111,14 @@ export const App = () => {
           />
         </Container>
       ) : creating ? (
-        <AddItem setCreating={setCreating} categories={categories} />
+        <>
+          {/* view adding item */}
+          <AddItem setCreating={setCreating} categories={categories} />
+        </>
       ) : (
         <>
           <Container style={{ minHeight: "100vh" }} className="d-flex">
+            {/* view display of current items */}
             <Row>
               {items.map((item, i) => (
                 <Col key={i}>
