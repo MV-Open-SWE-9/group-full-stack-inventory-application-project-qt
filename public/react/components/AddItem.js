@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
+
 //component to add new items to database
 const AddItem = ({ setCreating, categories }) => {
   //states of the item model:
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(null);

@@ -45,6 +45,24 @@ const ItemDetail = ({ item, setDetail, setEditing, login, user }) => {
     }
   };
 
+  const handleClick = async () => {
+    try {
+      setDetail(false);
+      await fetch(`${apiURL}/users/addToCart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          itemId: item.id,
+        }),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <>
       <Row className="mt-3">
