@@ -46,6 +46,7 @@ const AddItem = ({ setCreating, categories }) => {
               value={name}
               type="text"
               placeholder="Enter Item Name"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -56,6 +57,7 @@ const AddItem = ({ setCreating, categories }) => {
               as="textarea"
               style={{ height: "100px" }}
               placeholder="Enter Description"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -65,13 +67,13 @@ const AddItem = ({ setCreating, categories }) => {
               value={price}
               type="number"
               placeholder="Enter Price"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
 
             <Form.Select
-
               onChange={(e) => setCategory(e.target.value)}
               value={category}
               type="text"
@@ -86,7 +88,6 @@ const AddItem = ({ setCreating, categories }) => {
                 <option>{category}</option>
               ))}
             </Form.Select>
-
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>
@@ -95,6 +96,7 @@ const AddItem = ({ setCreating, categories }) => {
               value={image}
               type="text"
               placeholder="Enter Image Url"
+              required
             />
           </Form.Group>
           <Button variant="primary" type="submit">

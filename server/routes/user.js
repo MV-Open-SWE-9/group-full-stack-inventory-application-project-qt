@@ -24,6 +24,26 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+// GET /users/:username
+router.post("/auth", async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({
+      where: {
+        username: username,
+      },
+    });
+    if (!user) return res.sendStatus(401);
+    if (user.password !== password) {
+      return res.sendStatus(401);
+    }
+    const sentUser = { id: user.id, username: user.username };
+    res.json(sentUser);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // POST /users
 router.post("/", async (req, res, next) => {
   try {
