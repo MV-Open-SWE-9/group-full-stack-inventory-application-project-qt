@@ -13,7 +13,9 @@ const Item = ({ item, setDetail, setItem }) => {
       <Card.Body bg="secondary" key={"Secondary"}>
         <Card.Title style={{ height: "7em" }}>{item.name}</Card.Title>
         <CardText>${item.price.toFixed(2)}</CardText>
+
         {/* button that allows user to see extended details about product */}
+
         <Button
           variant="primary"
           onClick={() => {

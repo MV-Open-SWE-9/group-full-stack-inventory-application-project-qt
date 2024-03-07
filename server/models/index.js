@@ -6,6 +6,7 @@ const User = require("./User");
 User.belongsToMany(Item, { through: "cart" });
 Item.belongsToMany(User, { through: "cart" });
 
+
 module.exports = {
   db,
   Item,

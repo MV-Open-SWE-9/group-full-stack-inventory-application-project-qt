@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
+
 //a component that allows user to make changes to existing item
+
 const EditItem = ({ setEditing, item, setItem, categories }) => {
   const [name, setName] = useState(`${item.name}`);
   const [description, setDescription] = useState(`${item.description}`);

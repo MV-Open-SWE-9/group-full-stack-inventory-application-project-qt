@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const { User, Item } = require("../models");
 
 //get /users
@@ -122,7 +123,5 @@ router.post("/addToCart", async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 module.exports = router;

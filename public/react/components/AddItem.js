@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import apiURL from "../api";
 
+
 //component to add new items to database
 const AddItem = ({ setCreating, categories }) => {
   //states of the item model
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -44,7 +46,9 @@ const AddItem = ({ setCreating, categories }) => {
 
   return (
     <>
+
       {/* form containing all the properties to create a new item */}
+
       <Container
         className="text-light"
         data-bs-theme="dark"
@@ -84,7 +88,9 @@ const AddItem = ({ setCreating, categories }) => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
+
             <Form.Select
+
               onChange={(e) => setCategory(e.target.value)}
               value={category}
               type="text"
@@ -99,6 +105,7 @@ const AddItem = ({ setCreating, categories }) => {
                 <option>{category}</option>
               ))}
             </Form.Select>
+
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image Url</Form.Label>
