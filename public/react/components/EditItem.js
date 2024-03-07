@@ -10,15 +10,6 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
   const [category, setCategory] = useState(`${item.category}`);
   const [image, setImage] = useState(`${item.image}`);
 
-  //function that allows user input on if they would like to create an item
-  const editConfirm = (e) => {
-    if (confirm("Eveything look okay?") === true) {
-      createItem(e);
-    } else {
-      console.log("Aborted");
-    }
-  };
-
   //fetch particular item and make changes
   async function createItem(e) {
     e.preventDefault();
@@ -52,7 +43,7 @@ const EditItem = ({ setEditing, item, setItem, categories }) => {
         data-bs-theme="dark"
         className="text-light"
       >
-        <Form className="mt-3" onSubmit={(e) => editConfirm(e)}>
+        <Form className="mt-3" onSubmit={(e) => createItem(e)}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
             <Form.Control

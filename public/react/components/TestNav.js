@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Container, Navbar, Button, Badge } from "react-bootstrap";
 
-function TestNav({ logOut, login, setLoggingIn, loggingIn, user }) {
+function TestNav({ logOut, login, setLoggingIn, loggingIn, user, setCart }) {
   useEffect(() => console.log(user), []);
   return (
     <Navbar expand="lg" className="mb-5 sticky-top" bg="primary">
@@ -19,6 +19,13 @@ function TestNav({ logOut, login, setLoggingIn, loggingIn, user }) {
                       {user.username}
                     </Badge>
                   </Navbar.Text>
+                  <Button
+                    variant="success"
+                    className="me-3"
+                    onClick={() => setCart(true)}
+                  >
+                    Cart
+                  </Button>
                   <Button className="me-3" variant="secondary" onClick={logOut}>
                     Logout
                   </Button>
