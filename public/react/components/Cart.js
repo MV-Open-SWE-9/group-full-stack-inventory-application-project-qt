@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Button, CardText, Container, Row, Col } from "react-bootstrap";
 import apiURL from "../api";
 
-const Cart = ({ user, setCart }) => {
+const Cart = ({ user, setCart, setDetail, setItem, item, detail }) => {
   const [userItems, setUserItems] = useState([]);
 
   useEffect(() => {
@@ -13,10 +13,27 @@ const Cart = ({ user, setCart }) => {
     try {
       const res = await fetch(`${apiURL}/users/${user.id}/cart`);
       const data = await res.json();
-      console.log(data);
       setUserItems(data);
     } catch (e) {
       console.log("Error", e);
+    }
+  };
+
+  const handleRemove = async (item) => {
+    try {
+      await fetch(`${apiURL}/users/removeFromCart`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          itemId: item.id,
+        }),
+      });
+      fetchItems();
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -42,6 +59,9 @@ const Cart = ({ user, setCart }) => {
               <Card.Body bg="secondary" key={"Secondary"}>
                 <Card.Title style={{ height: "7em" }}>{item.name}</Card.Title>
                 <CardText>${item.price.toFixed(2)}</CardText>
+                <Button variant="danger" onClick={() => handleRemove(item)}>
+                  Remove
+                </Button>
               </Card.Body>
             </Card>
           </Col>

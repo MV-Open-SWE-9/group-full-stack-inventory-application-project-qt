@@ -69,6 +69,20 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+// DELETE /removeFromCart
+
+router.delete("/removeFromCart", async (req, res, next) => {
+  try {
+    const { userId, itemId } = req.body;
+    const foundUser = await User.findByPk(userId);
+    const foundItem = await Item.findByPk(itemId);
+    await foundUser.removeItem(foundItem);
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // DELETE /users/:id
 
 router.delete("/:id", async (req, res, next) => {
@@ -81,6 +95,8 @@ router.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+// GET /:id/cart
 
 router.get("/:id/cart", async (req, res, next) => {
   try {
@@ -101,9 +117,12 @@ router.post("/addToCart", async (req, res, next) => {
     const foundUser = await User.findByPk(userId);
     const foundItem = await Item.findByPk(itemId);
     await foundUser.addItems(foundItem);
+    res.sendStatus(200);
   } catch (error) {
     next(error);
   }
 });
+
+
 
 module.exports = router;

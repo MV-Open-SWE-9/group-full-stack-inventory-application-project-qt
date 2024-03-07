@@ -100,13 +100,13 @@ const Login = ({ setLoggingin, setLogin, setUser }) => {
                 required
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="success" className="me-2" type="submit">
               Log In
             </Button>
-            <Button onClick={() => setCreatingAccount(true)}>
+            <Button className="mx-2" onClick={() => setCreatingAccount(true)}>
               Create Account
             </Button>
-            <Button onClick={() => setLoggingin(false)}>Back</Button>
+            <Button variant="secondary" className="mx-2" onClick={() => setLoggingin(false)}>Back</Button>
           </Form>
         </Container>
       ) : (
@@ -147,10 +147,10 @@ const Login = ({ setLoggingin, setLogin, setUser }) => {
                 required
               />
             </Form.Group>
-            <Button onClick={() => setCreatingAccount(false)}>Log In</Button>
-            <Button variant="primary" type="submit">
+            <Button variant="success" className="me-2" type="submit">
               Create Account
             </Button>
+            <Button variant="secondary" className="mx-2" onClick={() => setCreatingAccount(false)}>Log In</Button>
           </Form>
         </Container>
       )}

@@ -29,7 +29,8 @@ const ItemDetail = ({ item, setDetail, setEditing, login, user }) => {
 
   const handleClick = async () => {
     try {
-      const response = await fetch(`${apiURL}/users/addToCart`, {
+      setDetail(false);
+      await fetch(`${apiURL}/users/addToCart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +67,7 @@ const ItemDetail = ({ item, setDetail, setEditing, login, user }) => {
           <div>
             <Button
               variant="secondary"
-              className="mx-2"
+              className="me-2"
               onClick={() => setDetail(false)}
             >
               Back

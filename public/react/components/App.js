@@ -62,7 +62,14 @@ export const App = () => {
       {/* ternary to decide which mode of item manipulation we are in  */}
       {cart ? (
         <>
-          <Cart user={user} setCart={setCart} />
+          <Cart
+            user={user}
+            setCart={setCart}
+            detail={detail}
+            item={item}
+            setDetail={setDetail}
+            setItem={setItem}
+          />
         </>
       ) : loggingIn ? (
         <>
