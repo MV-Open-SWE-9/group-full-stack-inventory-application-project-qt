@@ -4,6 +4,13 @@ import { Card, Button, Row, Col, Image } from "react-bootstrap";
 import apiURL from "../api";
 
 const ItemDetail = ({ item, setDetail, setEditing }) => {
+  const deleteConfirm = (e) => {
+    if (confirm("Are you sure you would like to delete?") === true) {
+      deleteItem(e);
+    } else {
+      console.log("Aborted");
+    }
+  };
 
   const deleteItem = async (e) => {
     e.preventDefault();
@@ -37,7 +44,7 @@ const ItemDetail = ({ item, setDetail, setEditing }) => {
           <h4>${Number(item.price).toFixed(2)}</h4>
           <Button onClick={() => setDetail(false)}>Back</Button>
           <Button onClick={() => setEditing(true)}>Edit Item</Button>
-          <Button onClick={(e) => deleteItem(e)}>Delete</Button>
+          <Button onClick={(e) => deleteConfirm(e)}>Delete</Button>
         </Col>
       </Row>
     </>
