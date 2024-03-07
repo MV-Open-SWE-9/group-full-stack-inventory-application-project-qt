@@ -4,7 +4,7 @@ import { Card, Button, Row, Col, Image } from "react-bootstrap";
 import apiURL from "../api";
 
 //component that renders extended item details
-const ItemDetail = ({ item, setDetail, setEditing }) => {
+const ItemDetail = ({ item, setDetail, setEditing, login, user }) => {
   //function that confirms before deletion
   const deleteConfirm = (e) => {
     if (confirm("Are you sure you would like to delete?") === true) {
@@ -24,6 +24,23 @@ const ItemDetail = ({ item, setDetail, setEditing }) => {
       setDetail(false);
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const handleClick = async () => {
+    try {
+      const response = await fetch(`${apiURL}/users/addToCart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          itemId: item.id,
+        }),
+      });
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -47,9 +64,32 @@ const ItemDetail = ({ item, setDetail, setEditing }) => {
           <h4>${Number(item.price).toFixed(2)}</h4>
           {/* row of buttons that give user options */}
           <div>
-            <Button onClick={() => setDetail(false)}>Back</Button>
-            <Button onClick={() => setEditing(true)}>Edit Item</Button>
-            <Button onClick={(e) => deleteConfirm(e)}>Delete</Button>
+            <Button
+              variant="secondary"
+              className="mx-2"
+              onClick={() => setDetail(false)}
+            >
+              Back
+            </Button>
+            <Button
+              variant="warning"
+              className="mx-2"
+              onClick={() => setEditing(true)}
+            >
+              Edit Item
+            </Button>
+            <Button
+              variant="danger"
+              className="mx-2"
+              onClick={(e) => deleteConfirm(e)}
+            >
+              Delete
+            </Button>
+            {login && (
+              <Button variant="success" className="mx-2" onClick={handleClick}>
+                Add to Cart
+              </Button>
+            )}
           </div>
         </Col>
       </Row>

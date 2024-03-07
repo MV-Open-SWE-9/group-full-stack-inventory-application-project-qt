@@ -78,6 +78,8 @@ export const App = () => {
             item={item}
             setDetail={setDetail}
             setEditing={setEditing}
+            login={login}
+            user={user}
           />
         </Container>
       ) : creating ? (

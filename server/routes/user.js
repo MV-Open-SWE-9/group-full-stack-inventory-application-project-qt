@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../models");
+const { User, Item } = require("../models");
 
 //get /users
 router.get("/", async (req, res, next) => {
@@ -77,6 +77,19 @@ router.delete("/:id", async (req, res, next) => {
     if (!oldUser) return res.sendStatus(404);
     let user = await oldUser.destroy();
     res.send(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// POST /users/addToCart
+
+router.post("/addToCart", async (req, res, next) => {
+  try {
+    const { userId, itemId } = req.body;
+    const foundUser = await User.findByPk(userId);
+    const foundItem = await Item.findByPk(itemId);
+    await foundUser.addItems(foundItem);
   } catch (error) {
     next(error);
   }
