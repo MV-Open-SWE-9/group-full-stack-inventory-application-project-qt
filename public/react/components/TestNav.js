@@ -5,6 +5,7 @@ function TestNav({ logOut, login, setLoggingIn, loggingIn, user, setCart }) {
   useEffect(() => console.log(user), []);
   return (
     <Navbar expand="lg" className="mb-5 sticky-top" bg="primary">
+      {/* navbar component that shows login feature */}
       <Container>
         <Navbar.Brand className="text-light ms-4">Inventory App</Navbar.Brand>
         {!loggingIn && (

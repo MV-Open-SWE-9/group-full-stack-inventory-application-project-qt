@@ -14,7 +14,7 @@ const ItemDetail = ({ item, setDetail, setEditing, login, user }) => {
     }
   };
 
-  //fetch item that needs to be deleted
+  // fetch item that needs to be deleted
   const deleteItem = async (e) => {
     e.preventDefault();
     try {
@@ -24,6 +24,24 @@ const ItemDetail = ({ item, setDetail, setEditing, login, user }) => {
       setDetail(false);
     } catch (err) {
       console.error(err);
+    }
+  };
+  // function that adds item to cart
+  const handleClick = async () => {
+    try {
+      setDetail(false);
+      await fetch(`${apiURL}/users/addToCart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          itemId: item.id,
+        }),
+      });
+    } catch (e) {
+      console.error(e);
     }
   };
 
