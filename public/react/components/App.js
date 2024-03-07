@@ -9,6 +9,7 @@ import AddItem from "./AddItem";
 import EditItem from "./EditItem";
 import TestNav from "./TestNav";
 import Login from "./Login";
+import Cart from "./Cart";
 
 export const App = () => {
   const [items, setItems] = useState([]);
@@ -19,6 +20,7 @@ export const App = () => {
   const [login, setLogin] = useState(false);
   const [loggingIn, setLoggingIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState(false);
 
   const categories = [
     "men's clothing",
@@ -55,9 +57,14 @@ export const App = () => {
         loggingIn={loggingIn}
         setLoggingIn={setLoggingIn}
         user={user}
+        setCart={setCart}
       />
       {/* ternary to decide which mode of item manipulation we are in  */}
-      {loggingIn ? (
+      {cart ? (
+        <>
+          <Cart user={user} />
+        </>
+      ) : loggingIn ? (
         <>
           <Login
             setLoggingin={setLoggingIn}

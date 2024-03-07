@@ -82,6 +82,17 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+router.get("/:id/cart", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const foundUser = await User.findByPk(id, { include: Item });
+    let items = foundUser.items;
+    res.json(items);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // POST /users/addToCart
 
 router.post("/addToCart", async (req, res, next) => {
