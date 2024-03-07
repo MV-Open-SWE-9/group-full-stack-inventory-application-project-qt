@@ -30,6 +30,7 @@ export const App = () => {
     fetchItems();
   }, [creating, detail]);
 
+  //get all items
   const fetchItems = async () => {
     try {
       const res = await fetch(`${apiURL}/items`);
@@ -55,6 +56,7 @@ export const App = () => {
         setLoggingIn={setLoggingIn}
         user={user}
       />
+      {/* ternary to decide which mode of item manipulation we are in  */}
       {loggingIn ? (
         <>
           <Login
