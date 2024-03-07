@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Button, CardText, Container, Row, Col } from "react-bootstrap";
 import apiURL from "../api";
 
-const Cart = ({ user }) => {
+const Cart = ({ user, setCart }) => {
   const [userItems, setUserItems] = useState([]);
 
   useEffect(() => {
@@ -46,6 +46,13 @@ const Cart = ({ user }) => {
             </Card>
           </Col>
         ))}
+        <Button
+          className="fixed-bottom m-3"
+          style={{ maxWidth: "10em" }}
+          onClick={() => setCart(false)}
+        >
+          Back
+        </Button>
       </Row>
     </Container>
   );
